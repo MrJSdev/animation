@@ -1,20 +1,22 @@
 <template>
   <div id="app">
-    <header id="main-header" ref="mainHeader">
-      <div id="user" class="h-col">
+    <div class="top-bar"></div>
+    <div id="main-container">
+      <aside id="main-header nav-col" ref="mainHeader">
+        <div id="nav" class="h-col">
+          <router-link class="nav-link" to="/">Home</router-link>
+          <router-link class="nav-link" to="/about">About</router-link>
+          <router-link class="nav-link" to="/product/1">Users</router-link>
+        </div>
+      </aside>
 
+      <div class="container-col">
+        <transition
+        >
+          <router-view/>
+        </transition>
       </div>
-      <div id="nav" class="h-col">
-        <router-link to="/">Home</router-link> |
-        <router-link to="/about">About</router-link> |
-        <router-link to="/product">Products</router-link>
-      </div>
-    </header>
-
-    <transition
-    >
-      <router-view/>
-    </transition>
+    </div>
   </div>
 </template>
 <script>
@@ -62,6 +64,9 @@
   }
 </script>
 <style lang="scss">
+  *, *:before, *:after {
+    box-sizing: border-box;
+  }
 body{
   padding: 0;
   margin: 0;
@@ -74,6 +79,32 @@ body{
   color: #2c3e50;
   background-color: darken(white, 3);
 }
+.top-bar{
+  display: inline-block;
+  width: 100%;
+  height: 55px;
+  background-color: #fff;
+  box-shadow: 0 3px 3px rgba(black, 0.05);
+}
+.container-col{
+  padding: 10px;
+}
+#main-container{
+  display: flex;
+  .container-col{
+    flex: 1;
+  }
+}
+.nav-col{
+  flex: 1;
+  max-width: 240px;
+  background-color: #fff;
+
+  .nav-link{
+    display: inline-block;
+    width: 100%;
+  }
+}
 #main-header{
   display: flex;
   padding: 40px 20px;
@@ -84,11 +115,9 @@ body{
 }
 .header-section{
   position: relative;
-  top: -100px;
   background-color: white;
-  border:solid 2px rgba(black, 0.1);
+  text-align: left;
   height: 150px;
-  width: 350px;
   .users-list{
     display: inline-block;
     width: 100%;
@@ -100,11 +129,18 @@ body{
 }
 #nav {
   padding: 30px;
+  box-shadow: 3px 0 3px rgba(black, 0.05);
+  height: 94%;
+  margin-top: -5px;
+  background-color: #fff;
 }
 
 #nav a {
   font-weight: bold;
   color: #2c3e50;
+  padding: 10px 5px;
+  display: inline-block;
+  width: 100%;
 }
 
 #nav a.router-link-exact-active {
@@ -161,5 +197,23 @@ body{
   box-shadow: 0 0 3px rgba(black, 0.1);
   border-radius: 50%;
   border:solid 3px dodgerblue;
+}
+
+.single-user{
+  display: flex;
+  .sidebar-details{
+    flex: 1;
+    max-width: 300px;
+    background-color: #fff;
+    box-shadow: 0 0 3px rgba(black, 0.1);
+  }
+  .content-details{
+    flex: 1;
+    margin-left: 10px;
+    position: relative;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 3px rgba(black, 0.1);
+  }
 }
 </style>

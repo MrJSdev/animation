@@ -3,7 +3,9 @@
     <div class="content-details">
       <div class="users-list">
         <div class="user-item" v-for="(user, index) in getUsers">
-          <img :src="user.image" class="user-img" :id="'user' + index" :ref="'userPhoto' + index" @click="viewProfile(user, index)" alt="">
+          <div class="img-in">
+            <img :src="user.image" class="user-img" :id="'user' + index" :ref="'userPhoto' + index" @click="viewProfile(user, index)" alt="">
+          </div>
           <span class="value">{{ user.name }}</span>
         </div>
       </div>
@@ -61,7 +63,11 @@ export default {
       padding: 5px 0;
       display: flex;
       align-items: center;
+      min-height: 60px;
       border-bottom: solid thin rgba(black, 0.05);
+      .img-in{
+        min-width: 60px;
+      }
       .value{
         display: inline-block;
         margin-left: 10px;
